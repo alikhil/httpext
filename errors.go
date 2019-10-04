@@ -38,6 +38,14 @@ func ValidationError(err error) *ResponseError {
 	}
 }
 
+// BadRequestError - creates response error with passed error and status code 400 BAD REQUEST
+func BadRequestError(err error) *ResponseError {
+	return &ResponseError{
+		err:    err,
+		status: http.StatusBadRequest,
+	}
+}
+
 // InternalServerError - creates response error with internal server error and status code 500
 func InternalServerError(err error) *ResponseError {
 	return &ResponseError{
