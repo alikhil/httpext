@@ -10,11 +10,11 @@ type responseTemplate struct {
 	Payload interface{} `json:"payload,omitempty"`
 }
 
-type handler = func(r *http.Request) (*ResponseError, interface{})
+type handler = func(r *http.Request) (interface{}, *ResponseError)
 
 func Wrap(handler handler) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		var err, result = handler(r)
+		var result, err = handler(r)
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(err.status)
 
