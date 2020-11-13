@@ -10,6 +10,12 @@ type ResponseError struct {
 	status int
 }
 
+// Err - returns error
+func (re *ResponseError) Err() error {
+	return re.err
+}
+
+// Error - implements error interface
 func (re *ResponseError) Error() string {
 	if re.err == nil {
 		return ""
